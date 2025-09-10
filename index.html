@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered 3D Portfolio</title>
+    <meta name="description" content="Interactive 3D portfolio showcasing cutting-edge web development with AI integration">
+    <meta name="keywords" content="portfolio, 3D, AI, web development, interactive">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>Portfolio</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Welcome to my <span class="gradient-text">AI-Powered</span> 
+                    <span class="gradient-text">3D Portfolio</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Innovative web developer crafting immersive digital experiences
+                    with cutting-edge technology and artificial intelligence
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="explore-btn">Explore Portfolio</button>
+                    <button class="btn-secondary" id="ai-chat-btn">Chat with AI</button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a passionate web developer specializing in creating immersive 
+                            3D experiences and integrating AI technologies to build the future 
+                            of web development.
+                        </p>
+                        <p>
+                            With expertise in modern frameworks and emerging technologies, 
+                            I bring ideas to life through innovative digital solutions.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3 class="stat-number" data-target="50">0</h3>
+                            <p class="stat-label">Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat-number" data-target="3">0</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="stat-number" data-target="100">0</h3>
+                            <p class="stat-label">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card" data-project="1">
+                        <div class="project-image">
+                            <div class="project-placeholder">3D Web App</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Interactive 3D Experience</h3>
+                            <p>Immersive web application built with Three.js and WebGL</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Three.js</span>
+                                <span class="tech-tag">WebGL</span>
+                                <span class="tech-tag">GSAP</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="2">
+                        <div class="project-image">
+                            <div class="project-placeholder">AI Dashboard</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>AI-Powered Analytics</h3>
+                            <p>Smart dashboard with machine learning insights</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="3">
+                        <div class="project-image">
+                            <div class="project-placeholder">VR Experience</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Virtual Reality Platform</h3>
+                            <p>WebXR application for immersive virtual experiences</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">WebXR</span>
+                                <span class="tech-tag">A-Frame</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span>JavaScript/TypeScript</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="90"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>React/Next.js</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Three.js/WebGL</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="80"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI & Machine Learning</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>TensorFlow/PyTorch</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="75"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Natural Language Processing</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="70"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's create something amazing together</h3>
+                        <p>Ready to bring your ideas to life with cutting-edge technology?</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <span>hello@portfolio.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📍</span>
+                                <span>Your City, Country</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chat Interface -->
+    <div id="ai-chat" class="ai-chat-container">
+        <div class="ai-chat-header">
+            <h4>AI Assistant</h4>
+            <button id="close-chat" class="close-chat">&times;</button>
+        </div>
+        <div class="ai-chat-messages" id="chat-messages">
+            <div class="ai-message">
+                <p>Hello! I'm your AI assistant. How can I help you learn more about this portfolio?</p>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask me anything about this portfolio...">
+            <button id="send-message" class="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Loading 3D Experience...</h3>
+            <div class="loading-progress">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="src/js/main.js"></script>
+    <script src="src/js/animations.js"></script>
+    <script src="src/js/ai-chat.js"></script>
+</body>
+</html>
