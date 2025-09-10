@@ -112,10 +112,10 @@ The default ai-chat.js is structured for a pluggable backend. To integrate a rea
 MIT. See LICENSE for details.
 
 ## Contact
-- Email: hello@portfolio.com
-- LinkedIn: your-linkedin
+- Email: ajaysinghdodiya@gmail.com
+- LinkedIn: https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/
 - GitHub: Ajaydodiya7773
-- Website: your-portfolio
+- Website:https://a-ipowerd-portfolio3-d.vercel.app/
 
 —
 Built with ❤️ using Three.js, GSAP, and Vite.
