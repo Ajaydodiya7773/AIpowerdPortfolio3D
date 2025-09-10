@@ -1,18 +1,28 @@
 // AI Chat Integration
 class AIChat {
     constructor() {
-        this.chatContainer = document.getElementById('ai-chat');
-        this.messagesContainer = document.getElementById('chat-messages');
-        this.chatInput = document.getElementById('chat-input');
-        this.sendButton = document.getElementById('send-message');
-        this.closeButton = document.getElementById('close-chat');
-        this.aiChatButton = document.getElementById('ai-chat-btn');
-        this.aiBubble = document.getElementById('ai-bubble');
-        this.isOpen = false;
-        this.conversationHistory = [];
-        
-        this.initializeChat();
-        this.setupEventListeners();
+        try {
+            this.chatContainer = document.getElementById('ai-chat');
+            this.messagesContainer = document.getElementById('chat-messages');
+            this.chatInput = document.getElementById('chat-input');
+            this.sendButton = document.getElementById('send-message');
+            this.closeButton = document.getElementById('close-chat');
+            this.aiChatButton = document.getElementById('ai-chat-btn');
+            this.aiBubble = document.getElementById('ai-bubble');
+            this.isOpen = false;
+            this.conversationHistory = [];
+            
+            // Verify required elements exist
+            if (!this.chatContainer || !this.messagesContainer || !this.chatInput || !this.sendButton) {
+                throw new Error('Required AI chat elements not found in DOM');
+            }
+            
+            this.initializeChat();
+            this.setupEventListeners();
+        } catch (error) {
+            console.error('AIChat constructor error:', error);
+            throw error;
+        }
     }
 
     initializeChat() {
@@ -434,7 +444,28 @@ class AIChat {
 
 // Initialize AI Chat when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new AIChat();
+    try {
+        // Initialize AI Chat
+        const aiChatInstance = new AIChat();
+        
+        // Make it globally available for debugging
+        window.aiChat = aiChatInstance;
+        
+        console.log('AI Chat initialized successfully');
+    } catch (error) {
+        console.error('AI Chat initialization failed:', error);
+        
+        // Fallback initialization
+        setTimeout(() => {
+            try {
+                const fallbackAIChat = new AIChat();
+                window.aiChat = fallbackAIChat;
+                console.log('AI Chat fallback initialization successful');
+            } catch (fallbackError) {
+                console.error('AI Chat fallback also failed:', fallbackError);
+            }
+        }, 1000);
+    }
 });
 
 // Add some CSS for typing indicator animation

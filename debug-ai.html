@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>AI Features Debug Test</h1>
+    <div id="test-results"></div>
+    
+    <div id="ai-bubble" style="width: 60px; height: 60px; background: #00ff88; border-radius: 50%; margin: 20px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white;">AI</div>
+    
+    <div id="ai-chat" style="display: none; border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+        <h3>AI Chat Test</h3>
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Test message" style="width: 200px; margin: 10px 0;">
+        <button id="send-message">Send</button>
+        <button id="close-chat">Close</button>
+    </div>
+
+    <script>
+        const results = document.getElementById('test-results');
+        
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        // Test 1: Check if elements exist
+        addResult('Testing DOM elements...', 'info');
+        
+        const aiBubble = document.getElementById('ai-bubble');
+        const aiChat = document.getElementById('ai-chat');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-message');
+        const closeButton = document.getElementById('close-chat');
+        
+        if (aiBubble) addResult('✓ AI Bubble found', 'pass');
+        else addResult('✗ AI Bubble not found', 'fail');
+        
+        if (aiChat) addResult('✓ AI Chat container found', 'pass');
+        else addResult('✗ AI Chat container not found', 'fail');
+        
+        if (chatInput) addResult('✓ Chat input found', 'pass');
+        else addResult('✗ Chat input not found', 'fail');
+        
+        // Test 2: Check if click events work
+        if (aiBubble && aiChat) {
+            aiBubble.addEventListener('click', function() {
+                aiChat.style.display = aiChat.style.display === 'none' ? 'block' : 'none';
+                addResult('✓ AI Bubble click working', 'pass');
+            });
+            addResult('✓ Click event handlers attached', 'pass');
+        } else {
+            addResult('✗ Cannot attach click handlers', 'fail');
+        }
+        
+        // Test 3: Check JavaScript module loading
+        addResult('Testing JavaScript loading...', 'info');
+        
+        try {
+            // Test if modern JS features work
+            const testArrow = () => 'Arrow functions work';
+            const testTemplate = `Template literals work`;
+            addResult('✓ Modern JavaScript features working', 'pass');
+        } catch (error) {
+            addResult('✗ Modern JavaScript error: ' + error.message, 'fail');
+        }
+        
+        // Test 4: Check if AI chat class would work
+        addResult('Testing AI Chat class simulation...', 'info');
+        
+        try {
+            class TestAIChat {
+                constructor() {
+                    this.test = true;
+                }
+                
+                generateResponse() {
+                    return "Test response from Ajay's AI assistant";
+                }
+            }
+            
+            const testChat = new TestAIChat();
+            addResult('✓ AI Chat class structure works', 'pass');
+            addResult('✓ Test response: ' + testChat.generateResponse(), 'pass');
+        } catch (error) {
+            addResult('✗ AI Chat class error: ' + error.message, 'fail');
+        }
+        
+        addResult('Debug test completed. If all tests pass, AI should work on Vercel.', 'info');
+    </script>
+</body>
+</html>

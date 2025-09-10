@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-vercel": "vite build && cp -r src dist/",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

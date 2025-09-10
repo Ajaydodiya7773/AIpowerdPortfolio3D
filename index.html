@@ -440,7 +440,37 @@
 
     <!-- Scripts -->
     <script type="module" src="src/js/main.js"></script>
-    <script src="src/js/animations.js"></script>
-    <script src="src/js/ai-chat.js"></script>
+    <script type="module" src="src/js/animations.js"></script>
+    <script type="module" src="src/js/ai-chat.js"></script>
+    
+    <!-- Fallback script for AI initialization -->
+    <script>
+        // Ensure AI features work on all platforms
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for all modules to load
+            setTimeout(function() {
+                // Check if AI bubble exists and add click handler if missing
+                const aiBubble = document.getElementById('ai-bubble');
+                const aiChat = document.getElementById('ai-chat');
+                
+                if (aiBubble && aiChat && !aiBubble.hasAttribute('data-initialized')) {
+                    aiBubble.setAttribute('data-initialized', 'true');
+                    aiBubble.addEventListener('click', function() {
+                        aiChat.classList.toggle('active');
+                        aiBubble.classList.toggle('chat-active');
+                    });
+                    
+                    // Close chat functionality
+                    const closeBtn = document.getElementById('close-chat');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', function() {
+                            aiChat.classList.remove('active');
+                            aiBubble.classList.remove('chat-active');
+                        });
+                    }
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html>
