@@ -106,8 +106,15 @@
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card" data-project="1">
-                        <div class="project-image">
-                            <div class="project-placeholder">AI Generator</div>
+                        <div class="project-image ai-generator-thumb">
+                            <div class="thumbnail-content">
+                                <div class="ai-brain">
+                                    <div class="brain-core"></div>
+                                    <div class="brain-waves"></div>
+                                    <div class="brain-particles"></div>
+                                </div>
+                                <div class="ai-text">AI</div>
+                            </div>
                         </div>
                         <div class="project-content">
                             <h3>AI Image Generator</h3>
@@ -120,8 +127,17 @@
                         </div>
                     </div>
                     <div class="project-card" data-project="2">
-                        <div class="project-image">
-                            <div class="project-placeholder">Location Tracker</div>
+                        <div class="project-image location-tracker-thumb">
+                            <div class="thumbnail-content">
+                                <div class="map-grid">
+                                    <div class="grid-lines"></div>
+                                    <div class="location-pin">
+                                        <div class="pin-head"></div>
+                                        <div class="pin-pulse"></div>
+                                    </div>
+                                </div>
+                                <div class="tracker-waves"></div>
+                            </div>
                         </div>
                         <div class="project-content">
                             <h3>Live Location Tracker</h3>
@@ -134,8 +150,18 @@
                         </div>
                     </div>
                     <div class="project-card" data-project="3">
-                        <div class="project-image">
-                            <div class="project-placeholder">Chat App</div>
+                        <div class="project-image chat-app-thumb">
+                            <div class="thumbnail-content">
+                                <div class="chat-bubbles">
+                                    <div class="bubble bubble-1"></div>
+                                    <div class="bubble bubble-2"></div>
+                                    <div class="bubble bubble-3"></div>
+                                </div>
+                                <div class="chat-connection">
+                                    <div class="connection-line"></div>
+                                    <div class="signal-dots"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="project-content">
                             <h3>WhatsApp Clone</h3>
@@ -148,8 +174,19 @@
                         </div>
                     </div>
                     <div class="project-card" data-project="4">
-                        <div class="project-image">
-                            <div class="project-placeholder">Movie App</div>
+                        <div class="project-image movie-app-thumb">
+                            <div class="thumbnail-content">
+                                <div class="movie-screen">
+                                    <div class="screen-glow"></div>
+                                    <div class="play-button">
+                                        <div class="play-icon"></div>
+                                    </div>
+                                </div>
+                                <div class="movie-reels">
+                                    <div class="reel reel-1"></div>
+                                    <div class="reel reel-2"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="project-content">
                             <h3>Movie Magnet</h3>
@@ -302,6 +339,7 @@
                             </button>
                         </div>
                         <div class="resume-buttons">
+                            <a href="https://drive.google.com/file/d/163r9NDvU2yhevwHKGmMAj9DdLAThXyHz/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-primary resume-btn">View Resume</a>
                             <a href="#contact" class="btn-secondary resume-btn">Get In Touch</a>
                             <a href="mailto:ajaysinghdodiya29@gmail.com" class="btn-secondary resume-btn">Send Email</a>
                         </div>
@@ -328,6 +366,14 @@
                                 <span><a href="https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/" target="_blank" rel="noopener noreferrer">LinkedIn: ajay-singh-dodiya</a></span>
                             </div>
                             <div class="contact-item">
+                                <span class="contact-icon">💻</span>
+                                <span><a href="https://github.com/Ajaydodiya7773" target="_blank" rel="noopener noreferrer">GitHub: Ajaydodiya7773</a></span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">⚡</span>
+                                <span><a href="https://leetcode.com/u/dodiyaajay/" target="_blank" rel="noopener noreferrer">LeetCode: dodiyaajay</a></span>
+                            </div>
+                            <div class="contact-item">
                                 <span class="contact-icon">📍</span>
                                 <span>Indore, Madhya Pradesh, India</span>
                             </div>
@@ -350,19 +396,33 @@
         </section>
     </main>
 
+    <!-- Floating AI Bubble -->
+    <div id="ai-bubble" class="ai-bubble">
+        <div class="bubble-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C13.74 22 15.36 21.55 16.78 20.78L21 22L19.78 17.78C20.55 16.36 21 14.74 21 13C21 7.48 16.52 3 11 3C6.48 3 2 7.48 2 13Z" fill="currentColor"/>
+                <circle cx="8" cy="13" r="1" fill="#0a0a0a"/>
+                <circle cx="12" cy="13" r="1" fill="#0a0a0a"/>
+                <circle cx="16" cy="13" r="1" fill="#0a0a0a"/>
+            </svg>
+        </div>
+        <div class="bubble-text">AI</div>
+        <div class="bubble-pulse"></div>
+    </div>
+
     <!-- AI Chat Interface -->
     <div id="ai-chat" class="ai-chat-container">
         <div class="ai-chat-header">
-            <h4>AI Assistant</h4>
+            <h4>AI Assistant - Ajay Dodiya</h4>
             <button id="close-chat" class="close-chat">&times;</button>
         </div>
         <div class="ai-chat-messages" id="chat-messages">
             <div class="ai-message">
-                <p>Hello! I'm your AI assistant. How can I help you learn more about this portfolio?</p>
+                <p>Hello! I'm Ajay's AI assistant. I can help you learn more about his work experience, education, projects, and skills. How can I assist you today?</p>
             </div>
         </div>
         <div class="ai-chat-input">
-            <input type="text" id="chat-input" placeholder="Ask me anything about this portfolio...">
+            <input type="text" id="chat-input" placeholder="Ask me about Ajay's experience, projects, or skills...">
             <button id="send-message" class="send-btn">Send</button>
         </div>
     </div>
