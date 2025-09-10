@@ -182,11 +182,12 @@ class PortfolioAnimations {
             const duration = 2000; // 2 seconds
             const step = target / (duration / 16); // 60fps
             let current = 0;
+            const isProjectsCounter = element.closest('.stat').querySelector('.stat-label').textContent.includes('Projects');
             
             const updateCounter = () => {
                 current += step;
                 if (current >= target) {
-                    element.textContent = target;
+                    element.textContent = isProjectsCounter ? target + '+' : target;
                 } else {
                     element.textContent = Math.floor(current);
                     requestAnimationFrame(updateCounter);
@@ -397,19 +398,81 @@ class FormHandler {
     }
 }
 
+// Hire Me Button Functionality
+class HireMeButton {
+    constructor() {
+        this.button = document.getElementById('hire-me-btn');
+        this.setupEventListeners();
+    }
+    
+    setupEventListeners() {
+        if (this.button) {
+            this.button.addEventListener('click', () => this.handleClick());
+            this.button.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+            this.button.addEventListener('mouseleave', () => this.handleMouseLeave());
+        }
+    }
+    
+    handleClick() {
+        // Create a ripple effect
+        this.createRipple();
+        
+        // Scroll to contact section
+        setTimeout(() => {
+            const contactSection = document.querySelector('#contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 300);
+        
+        // Add success animation
+        this.button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.button.style.transform = '';
+        }, 150);
+    }
+    
+    createRipple() {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        this.button.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+    
+    handleMouseMove(e) {
+        const rect = this.button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        this.button.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+    
+    handleMouseLeave() {
+        this.button.style.transform = '';
+    }
+}
+
 // Initialize animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioAnimations();
     new FormHandler();
+    new HireMeButton();
     
     // Add floating animation to project cards
     setTimeout(() => {
         PortfolioAnimations.addFloatingAnimation('.project-card', 5, 4);
     }, 1000);
-});
-
-// Add smooth scrolling for all internal links
-document.addEventListener('DOMContentLoaded', () => {
+    
+    // Add smooth scrolling for all internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();

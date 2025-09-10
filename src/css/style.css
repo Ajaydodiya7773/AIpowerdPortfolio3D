@@ -602,6 +602,337 @@ section {
     font-weight: 600;
 }
 
+/* AI Bubble */
+.ai-bubble {
+    position: fixed;
+    top: 20%;
+    right: 5%;
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-hover);
+    z-index: 100;
+    animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+    100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.6); }
+}
+
+/* Education Section */
+.education {
+    background: var(--bg-color);
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.edu-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.edu-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.edu-card h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.edu-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.certifications {
+    text-align: center;
+}
+
+.certifications h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.cert-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cert-list li {
+    background: var(--bg-secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-list li:hover {
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.cert-list li::before {
+    content: '🎓';
+    margin-right: 0.5rem;
+}
+
+/* Resume Section */
+.resume {
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.resume-text h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.resume-text p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.resume-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    transition: var(--transition);
+}
+
+.highlight-item:hover {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.highlight-icon {
+    font-size: 1.5rem;
+}
+
+.highlight-item span:last-child {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.resume-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* 3D Hire Me Button */
+.hire-me-container {
+    perspective: 1000px;
+    margin-bottom: 1rem;
+}
+
+.hire-me-btn {
+    position: relative;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 15px;
+    padding: 1.5rem 3rem;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--bg-color);
+    cursor: pointer;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 10px 25px rgba(0, 255, 136, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.hire-me-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.hire-me-btn:hover::before {
+    left: 100%;
+}
+
+.hire-me-btn:hover {
+    transform: translateY(-8px) rotateX(15deg) rotateY(5deg);
+    box-shadow: 
+        0 20px 40px rgba(0, 255, 136, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+        0 0 30px rgba(0, 255, 136, 0.6);
+}
+
+.hire-me-btn:active {
+    transform: translateY(-4px) rotateX(10deg) rotateY(3deg);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.btn-particles::before,
+.btn-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: float-particles 3s ease-in-out infinite;
+}
+
+.btn-particles::before {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.btn-particles::after {
+    top: 70%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float-particles {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1);
+    }
+}
+
+.resume-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.resume-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 130px;
+    text-align: center;
+}
+
+/* Ripple Effect for Hire Me Button */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
@@ -725,6 +1056,20 @@ section {
     
     .container {
         padding: 0 1rem;
+    }
+    
+    .resume-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .resume-highlights {
+        grid-template-columns: 1fr;
+    }
+    
+    .hire-me-btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
     }
 }
 

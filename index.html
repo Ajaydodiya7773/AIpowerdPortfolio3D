@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered 3D Portfolio</title>
+    <title>Ajay Dodiya | AI-Powered 3D Portfolio</title>
     <meta name="description" content="Interactive 3D portfolio showcasing cutting-edge web development with AI integration">
     <meta name="keywords" content="portfolio, 3D, AI, web development, interactive">
     <link rel="stylesheet" href="src/css/style.css">
@@ -16,13 +16,15 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h3>Portfolio</h3>
+                <h3>Ajay Dodiya</h3>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -37,21 +39,23 @@
     <canvas id="bg-canvas"></canvas>
 
     <!-- Main Content -->
+    <div class="ai-bubble" aria-label="AI">AI</div>
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Welcome to my <span class="gradient-text">AI-Powered</span> 
-                    <span class="gradient-text">3D Portfolio</span>
+                    Hi, I'm <span class="gradient-text">Ajay Dodiya</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Innovative web developer crafting immersive digital experiences
-                    with cutting-edge technology and artificial intelligence
+                    Web developer from Indore, Madhya Pradesh, India. MCA (2024) from SVIM Indore with 7.4 CGPA.
+                    I craft immersive 3D and AI-powered web experiences.
                 </p>
                 <div class="hero-buttons">
                     <button class="btn-primary" id="explore-btn">Explore Portfolio</button>
-                    <button class="btn-secondary" id="ai-chat-btn">Chat with AI</button>
+                    <a class="btn-secondary" id="ai-chat-btn" href="javascript:void(0)">Chat with AI</a>
+                    <a class="btn-secondary" href="mailto:ajaysinghdodiya29@gmail.com">Email Me</a>
+                    <a class="btn-secondary" href="https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -66,26 +70,29 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I'm a passionate web developer specializing in creating immersive 
-                            3D experiences and integrating AI technologies to build the future 
-                            of web development.
+                            I am Ajay Dodiya, a dedicated and passionate Full Stack Web Developer & Data Analyst with a flair for solving complex problems through innovative solutions. 
+                            With expertise in the MERN stack, Django, and Python, I specialize in creating high-performance web applications that enhance user experiences.
                         </p>
                         <p>
-                            With expertise in modern frameworks and emerging technologies, 
-                            I bring ideas to life through innovative digital solutions.
+                            My journey in the tech world has led me to work on a variety of projects, ranging from real-time web apps to AI-powered tools. 
+                            Whether it's building a chat application, an AI image generator, or a live location tracker, I thrive in crafting efficient, scalable, and user-centric applications.
+                        </p>
+                        <p>
+                            As a lifelong learner, I constantly explore new technologies and trends to stay ahead in the ever-evolving world of software development. 
+                            My goal is to build products that not only solve problems but also leave a lasting impact on users.
                         </p>
                     </div>
                     <div class="about-stats">
                         <div class="stat">
-                            <h3 class="stat-number" data-target="50">0</h3>
+                            <h3 class="stat-number" data-target="10">0</h3>
                             <p class="stat-label">Projects Completed</p>
                         </div>
                         <div class="stat">
-                            <h3 class="stat-number" data-target="3">0</h3>
+                            <h3 class="stat-number" data-target="1">0</h3>
                             <p class="stat-label">Years Experience</p>
                         </div>
                         <div class="stat">
-                            <h3 class="stat-number" data-target="100">0</h3>
+                            <h3 class="stat-number" data-target="10">0</h3>
                             <p class="stat-label">Happy Clients</p>
                         </div>
                     </div>
@@ -100,46 +107,90 @@
                 <div class="projects-grid">
                     <div class="project-card" data-project="1">
                         <div class="project-image">
-                            <div class="project-placeholder">3D Web App</div>
+                            <div class="project-placeholder">AI Generator</div>
                         </div>
                         <div class="project-content">
-                            <h3>Interactive 3D Experience</h3>
-                            <p>Immersive web application built with Three.js and WebGL</p>
+                            <h3>AI Image Generator</h3>
+                            <p>A creative AI tool built with MERN stack & OpenAI API that turns text into stunning images</p>
                             <div class="project-tech">
-                                <span class="tech-tag">Three.js</span>
-                                <span class="tech-tag">WebGL</span>
-                                <span class="tech-tag">GSAP</span>
+                                <span class="tech-tag">MERN Stack</span>
+                                <span class="tech-tag">OpenAI API</span>
+                                <span class="tech-tag">React</span>
                             </div>
                         </div>
                     </div>
                     <div class="project-card" data-project="2">
                         <div class="project-image">
-                            <div class="project-placeholder">AI Dashboard</div>
+                            <div class="project-placeholder">Location Tracker</div>
                         </div>
                         <div class="project-content">
-                            <h3>AI-Powered Analytics</h3>
-                            <p>Smart dashboard with machine learning insights</p>
+                            <h3>Live Location Tracker</h3>
+                            <p>Real-time location tracking app using Node.js & Socket.io to show users on a live map</p>
                             <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Socket.io</span>
+                                <span class="tech-tag">WebSocket</span>
                             </div>
                         </div>
                     </div>
                     <div class="project-card" data-project="3">
                         <div class="project-image">
-                            <div class="project-placeholder">VR Experience</div>
+                            <div class="project-placeholder">Chat App</div>
                         </div>
                         <div class="project-content">
-                            <h3>Virtual Reality Platform</h3>
-                            <p>WebXR application for immersive virtual experiences</p>
+                            <h3>WhatsApp Clone</h3>
+                            <p>MERN-based real-time chat app with WebSocket IO for seamless communication</p>
                             <div class="project-tech">
-                                <span class="tech-tag">WebXR</span>
-                                <span class="tech-tag">A-Frame</span>
-                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MERN</span>
+                                <span class="tech-tag">WebSocket</span>
+                                <span class="tech-tag">Real-time</span>
                             </div>
                         </div>
                     </div>
+                    <div class="project-card" data-project="4">
+                        <div class="project-image">
+                            <div class="project-placeholder">Movie App</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Movie Magnet</h3>
+                            <p>React-based movie recommendation website using IMDB API with trailers & sleek UI</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">IMDB API</span>
+                                <span class="tech-tag">UI/UX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <h2 class="section-title">Education & Certifications</h2>
+                <div class="education-grid">
+                    <div class="edu-card">
+                        <h3>MCA — Master of Computer Applications</h3>
+                        <p>Shri Vaishnav Institute of Management and Science, Indore (RGPV)</p>
+                        <p>2022 – 2024 • CGPA: 7.4</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3>BCA — Bachelor of Computer Applications</h3>
+                        <p>Christian Eminent College, Indore (DAVV)</p>
+                        <p>2019 – 2022</p>
+                    </div>
+                </div>
+                <div class="certifications">
+                    <h3>Certifications</h3>
+                    <ul class="cert-list">
+                        <li>Edunet Foundation Virtual Internship (AI & Cloud)</li>
+                        <li>IBM Cloud Developer Certification</li>
+                        <li>AICTE Certified Internship Program</li>
+                        <li>MERN Stack — Crush IT Techno</li>
+                        <li>Web Development — Infosys Springboard</li>
+                        <li>Python with AI — Infosys Springboard</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -154,33 +205,105 @@
                         <div class="skill-items">
                             <div class="skill-item">
                                 <span>JavaScript/TypeScript</span>
-                                <div class="skill-bar"><div class="skill-progress" data-skill="90"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <span>React/Next.js</span>
                                 <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
                             </div>
                             <div class="skill-item">
-                                <span>Three.js/WebGL</span>
+                                <span>React/Next.js</span>
                                 <div class="skill-bar"><div class="skill-progress" data-skill="80"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>HTML5/CSS3</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="90"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Three.js/WebGL</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="75"></div></div>
                             </div>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>AI & Machine Learning</h3>
+                        <h3>Backend & Database</h3>
                         <div class="skill-items">
                             <div class="skill-item">
-                                <span>Python</span>
-                                <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <span>TensorFlow/PyTorch</span>
+                                <span>Node.js/Express</span>
                                 <div class="skill-bar"><div class="skill-progress" data-skill="75"></div></div>
                             </div>
                             <div class="skill-item">
-                                <span>Natural Language Processing</span>
+                                <span>Python/Django</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="80"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>MongoDB/MySQL</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="75"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>RESTful APIs</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI & Emerging Tech</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span>Machine Learning</span>
                                 <div class="skill-bar"><div class="skill-progress" data-skill="70"></div></div>
                             </div>
+                            <div class="skill-item">
+                                <span>Data Structures & Algorithms</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Git/GitHub</span>
+                                <div class="skill-bar"><div class="skill-progress" data-skill="80"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="resume">
+            <div class="container">
+                <h2 class="section-title">Ready to Work Together?</h2>
+                <div class="resume-content">
+                    <div class="resume-text">
+                        <h3>Let's Build Something Amazing</h3>
+                        <p>
+                            I'm passionate about creating innovative web solutions that make a difference. 
+                            Whether you need a full-stack web application, AI integration, or a stunning 3D experience, 
+                            I'm ready to bring your vision to life.
+                        </p>
+                        <div class="resume-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🚀</span>
+                                <span>Full-Stack Development</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🤖</span>
+                                <span>AI Integration</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🌍</span>
+                                <span>3D Web Experiences</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">⚡</span>
+                                <span>Performance Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resume-actions">
+                        <div class="hire-me-container">
+                            <button class="hire-me-btn" id="hire-me-btn">
+                                <span class="btn-text">HIRE ME</span>
+                                <div class="btn-particles"></div>
+                            </button>
+                        </div>
+                        <div class="resume-buttons">
+                            <a href="#contact" class="btn-secondary resume-btn">Get In Touch</a>
+                            <a href="mailto:ajaysinghdodiya29@gmail.com" class="btn-secondary resume-btn">Send Email</a>
                         </div>
                     </div>
                 </div>
@@ -198,15 +321,15 @@
                         <div class="contact-details">
                             <div class="contact-item">
                                 <span class="contact-icon">📧</span>
-                                <span>hello@portfolio.com</span>
+                                <span>ajaysinghdodiya29@gmail.com</span>
                             </div>
                             <div class="contact-item">
-                                <span class="contact-icon">📱</span>
-                                <span>+1 (555) 123-4567</span>
+                                <span class="contact-icon">in</span>
+                                <span><a href="https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/" target="_blank" rel="noopener noreferrer">LinkedIn: ajay-singh-dodiya</a></span>
                             </div>
                             <div class="contact-item">
                                 <span class="contact-icon">📍</span>
-                                <span>Your City, Country</span>
+                                <span>Indore, Madhya Pradesh, India</span>
                             </div>
                         </div>
                     </div>
