@@ -1,4 +1,9 @@
 // Portfolio Animations and Interactions
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 class PortfolioAnimations {
     constructor() {
         this.setupScrollAnimations();
@@ -10,90 +15,85 @@ class PortfolioAnimations {
     }
 
     setupScrollAnimations() {
-        // Check if GSAP and ScrollTrigger are available
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
+        // Hero section parallax
+        gsap.to('.hero-content', {
+            yPercent: -50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
 
-            // Hero section parallax
-            gsap.to('.hero-content', {
-                yPercent: -50,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                }
-            });
-
-            // Section titles animation
-            gsap.utils.toArray('.section-title').forEach(title => {
-                gsap.fromTo(title, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: title,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            });
-
-            // Project cards stagger animation
-            gsap.fromTo('.project-card', {
+        // Section titles animation
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.fromTo(title, {
                 opacity: 0,
-                y: 60,
-                scale: 0.8
+                y: 50
             }, {
                 opacity: 1,
                 y: 0,
-                scale: 1,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '.projects-grid',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-
-            // About section content animation
-            gsap.fromTo('.about-text p', {
-                opacity: 0,
-                x: -50
-            }, {
-                opacity: 1,
-                x: 0,
                 duration: 1,
-                stagger: 0.3,
                 scrollTrigger: {
-                    trigger: '.about-content',
+                    trigger: title,
                     start: 'top 80%',
                     toggleActions: 'play none none reverse'
                 }
             });
+        });
 
-            // Stats animation
-            gsap.fromTo('.stat', {
-                opacity: 0,
-                y: 30
-            }, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                scrollTrigger: {
-                    trigger: '.about-stats',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-        }
+        // Project cards stagger animation
+        gsap.fromTo('.project-card', {
+            opacity: 0,
+            y: 60,
+            scale: 0.8
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.projects-grid',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        // About section content animation
+        gsap.fromTo('.about-text p', {
+            opacity: 0,
+            x: -50
+        }, {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        // Stats animation
+        gsap.fromTo('.stat', {
+            opacity: 0,
+            y: 30
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.about-stats',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
     }
 
     setupInteractiveElements() {
@@ -101,23 +101,19 @@ class PortfolioAnimations {
         const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(card, {
-                        scale: 1.05,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                }
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
             });
 
             card.addEventListener('mouseleave', () => {
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(card, {
-                        scale: 1,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                }
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
             });
         });
 
@@ -125,23 +121,19 @@ class PortfolioAnimations {
         const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
         buttons.forEach(button => {
             button.addEventListener('mouseenter', () => {
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(button, {
-                        scale: 1.05,
-                        duration: 0.2,
-                        ease: 'power2.out'
-                    });
-                }
+                gsap.to(button, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out'
+                });
             });
 
             button.addEventListener('mouseleave', () => {
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(button, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power2.out'
-                    });
-                }
+                gsap.to(button, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.out'
+                });
             });
         });
     }
@@ -277,16 +269,14 @@ class PortfolioAnimations {
     static addFloatingAnimation(selector, intensity = 10, duration = 3) {
         const elements = document.querySelectorAll(selector);
         elements.forEach((element, index) => {
-            if (typeof gsap !== 'undefined') {
-                gsap.to(element, {
-                    y: `+=${intensity}`,
-                    duration: duration + (index * 0.1),
-                    ease: 'sine.inOut',
-                    yoyo: true,
-                    repeat: -1,
-                    delay: index * 0.2
-                });
-            }
+            gsap.to(element, {
+                y: `+=${intensity}`,
+                duration: duration + (index * 0.1),
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1,
+                delay: index * 0.2
+            });
         });
     }
 
@@ -301,7 +291,7 @@ class PortfolioAnimations {
 
         document.addEventListener('mousemove', (e) => {
             const cursor = document.querySelector('.cursor');
-            if (cursor && typeof gsap !== 'undefined') {
+            if (cursor) {
                 gsap.to(cursor, {
                     x: e.clientX,
                     y: e.clientY,
@@ -488,6 +478,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { PortfolioAnimations, FormHandler };
-}
+export { PortfolioAnimations, FormHandler, HireMeButton };

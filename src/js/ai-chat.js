@@ -1,4 +1,6 @@
 // AI Chat Integration
+import { gsap } from 'gsap';
+
 class AIChat {
     constructor() {
         try {
@@ -93,14 +95,12 @@ class AIChat {
         }
         
         // Add opening animation
-        if (typeof gsap !== 'undefined') {
-            gsap.from(this.chatContainer, {
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        }
+        gsap.from(this.chatContainer, {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
     }
 
     closeChat() {
@@ -167,14 +167,12 @@ class AIChat {
         this.scrollToBottom();
         
         // Add entrance animation
-        if (typeof gsap !== 'undefined') {
-            gsap.from(messageDiv, {
-                y: 20,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        }
+        gsap.from(messageDiv, {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
     }
 
     showTypingIndicator() {
@@ -488,6 +486,4 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AIChat;
-}
+export { AIChat };
