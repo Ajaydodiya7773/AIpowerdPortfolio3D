@@ -14,9 +14,11 @@ class Portfolio3D {
         this.mouse = new THREE.Vector2();
         this.raycaster = new THREE.Raycaster();
         this.isLoading = true;
+        this.isMobile = this.detectMobile();
         
         this.init();
         this.setupEventListeners();
+        this.setupMobileNavigation();
         this.animate();
     }
 
@@ -51,13 +53,18 @@ class Portfolio3D {
         const canvas = document.getElementById('bg-canvas');
         this.renderer = new THREE.WebGLRenderer({
             canvas,
-            antialias: true,
-            alpha: true
+            antialias: !this.isMobile, // Disable antialiasing on mobile for better performance
+            alpha: true,
+            powerPreference: this.isMobile ? 'low-power' : 'high-performance'
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        // Limit pixel ratio on mobile devices
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.isMobile ? 1.5 : 2));
+        // Disable shadows on mobile for better performance
+        this.renderer.shadowMap.enabled = !this.isMobile;
+        if (!this.isMobile) {
+            this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        }
     }
 
     setupLights() {
@@ -87,8 +94,13 @@ class Portfolio3D {
         this.scene.add(pointLight3);
     }
 
+    detectMobile() {
+        return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    }
+    
     createParticleSystem() {
-        const particleCount = 5000;
+        // Reduce particle count on mobile devices for better performance
+        const particleCount = this.isMobile ? 1500 : 5000;
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
@@ -197,7 +209,10 @@ class Portfolio3D {
             })
         ];
 
-        for (let i = 0; i < 12; i++) {
+        // Reduce number of shapes on mobile for better performance
+        const shapeCount = this.isMobile ? 6 : 12;
+        
+        for (let i = 0; i < shapeCount; i++) {
             const geometry = shapes[i % shapes.length];
             const material = materials[i % materials.length];
             const mesh = new THREE.Mesh(geometry, material);
@@ -215,8 +230,9 @@ class Portfolio3D {
             );
             
             mesh.scale.setScalar(0.5 + Math.random() * 0.5);
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
+            // Only enable shadows on desktop
+            mesh.castShadow = !this.isMobile;
+            mesh.receiveShadow = !this.isMobile;
             
             this.geometricShapes.push(mesh);
             this.scene.add(mesh);
@@ -232,9 +248,17 @@ class Portfolio3D {
     setupEventListeners() {
         window.addEventListener('resize', () => this.onWindowResize());
         window.addEventListener('mousemove', (event) => this.onMouseMove(event));
-        window.addEventListener('click', (event) => this.onMouseClick(event));
+        window.addEventListener('click', (event) => this.onClick(event));
         
-        // Smooth scrolling for navigation
+        // Add touch events for mobile
+        window.addEventListener('touchmove', (event) => this.onTouchMove(event), { passive: true });
+        window.addEventListener('touchstart', (event) => this.onTouchStart(event), { passive: true });
+        window.addEventListener('touchend', (event) => this.onTouchEnd(event), { passive: true });
+        
+        // Mobile navigation toggle
+        this.setupMobileNavigation();
+        
+        // Smooth scrolling for navigation links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -243,18 +267,26 @@ class Portfolio3D {
                 if (targetSection) {
                     targetSection.scrollIntoView({ behavior: 'smooth' });
                 }
+                
+                // Close mobile menu after clicking a link
+                const navMenu = document.querySelector('.nav-menu');
+                const hamburger = document.querySelector('.hamburger');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
             });
         });
-
-        // Explore button animation
-        const exploreBtn = document.getElementById('explore-btn');
-        if (exploreBtn) {
-            exploreBtn.addEventListener('click', () => {
-                gsap.to(this.camera.position, {
-                    duration: 2,
-                    z: 10,
-                    ease: "power2.inOut"
-                });
+        
+        // Skills animation trigger
+        this.setupSkillsAnimation();
+        
+        // Contact form handling
+        this.setupContactForm();
+        
+        // Hire me button effects
+        this.setupHireMeButton();
+    }
             });
         }
     }
@@ -268,6 +300,27 @@ class Portfolio3D {
     onMouseMove(event) {
         this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+    
+    onTouchMove(event) {
+        if (event.touches.length > 0) {
+            const touch = event.touches[0];
+            this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+        }
+    }
+    
+    onTouchStart(event) {
+        if (event.touches.length > 0) {
+            const touch = event.touches[0];
+            this.mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+        }
+    }
+    
+    onTouchEnd(event) {
+        // Handle touch end if needed
+        this.onClick(event);
     }
 
     onMouseClick(event) {
@@ -325,6 +378,26 @@ class Portfolio3D {
         }
 
         this.renderer.render(this.scene, this.camera);
+    }
+    
+    setupMobileNavigation() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
     }
 }
 
