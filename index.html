@@ -10,27 +10,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h3>Ajay Dodiya</h3>
+                <a href="#home" class="logo-link">
+                    <span class="logo-text">Ajay</span><span class="logo-bracket">&lt;/&gt;</span>
+                </a>
             </div>
+            
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#resume" class="nav-link">Resume</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
+                <div class="hamburger-bg"></div>
             </div>
         </div>
     </nav>
@@ -39,27 +43,102 @@
     <canvas id="bg-canvas"></canvas>
 
     <!-- Main Content -->
-    <div class="ai-bubble" aria-label="AI">AI</div>
+    <div class="ai-bubble" aria-label="AI Assistant" title="Chat with AI Assistant"></div>
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="gradient-text">Ajay Dodiya</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Web developer from Indore, Madhya Pradesh, India. MCA (2024) from SVIM Indore with 7.4 CGPA.
-                    I craft immersive 3D and AI-powered web experiences.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn-primary" id="explore-btn">Explore Portfolio</button>
-                    <a class="btn-secondary" id="ai-chat-btn" href="javascript:void(0)">Chat with AI</a>
-                    <a class="btn-secondary" href="mailto:ajaysinghdodiya29@gmail.com">Email Me</a>
-                    <a class="btn-secondary" href="https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-intro">
+                            <h1 class="hero-greeting">Hello, I'm <span class="hero-name gradient-text">Ajay Dodiya</span></h1>
+                            <h2 class="hero-role">Full Stack Developer & AI Enthusiast</h2>
+                            <p class="hero-description">
+                                Transforming ideas into powerful digital experiences through 
+                                innovative web technologies and cutting-edge AI solutions.
+                            </p>
+                        </div>
+                        
+                        <!-- Skills Icons Grid -->
+                        <div class="skills-icons">
+                            <div class="icon-item" data-skill="React">
+                                <i class="fab fa-react"></i>
+                                <span>React</span>
+                            </div>
+                            <div class="icon-item" data-skill="Node.js">
+                                <i class="fab fa-node-js"></i>
+                                <span>Node.js</span>
+                            </div>
+                            <div class="icon-item" data-skill="Python">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="icon-item" data-skill="JavaScript">
+                                <i class="fab fa-js-square"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="icon-item" data-skill="Database">
+                                <i class="fas fa-database"></i>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="icon-item" data-skill="AI/ML">
+                                <i class="fas fa-brain"></i>
+                                <span>AI/ML</span>
+                            </div>
+                            <div class="icon-item" data-skill="Docker">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="icon-item" data-skill="Git">
+                                <i class="fab fa-git-alt"></i>
+                                <span>Git</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <a href="#resume" class="btn-download">
+                                <i class="fas fa-download"></i>
+                                Download Resume
+                            </a>
+                            <div class="social-links">
+                                <a href="https://github.com/Ajaydodiya7773" class="social-link" title="GitHub" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/ajay-singh-dodiya-68a147231/" class="social-link" title="LinkedIn" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="mailto:ajaysinghdodiya29@gmail.com" class="social-link" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://leetcode.com/u/dodiyaajay/" class="social-link" title="LeetCode" target="_blank">
+                                    <i class="fas fa-code"></i>
+                                </a>
+                                <a href="tel:+918462876073" class="social-link" title="Phone">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-badges">
+                            <span class="tech-badge">
+                                <i class="fas fa-rocket"></i>
+                                Full Stack Development
+                            </span>
+                            <span class="tech-badge">
+                                <i class="fas fa-robot"></i>
+                                AI & Machine Learning
+                            </span>
+                            <span class="tech-badge">
+                                <i class="fas fa-mobile-alt"></i>
+                                Responsive Design
+                            </span>
+                            <span class="tech-badge">
+                                <i class="fas fa-cloud"></i>
+                                Cloud Deployment
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-arrow"></div>
             </div>
         </section>
 
@@ -431,7 +510,7 @@
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <h3>Loading 3D Experience...</h3>
+            <h3>Welcome to Ajay's Portfolio</h3>
             <div class="loading-progress">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
@@ -443,10 +522,52 @@
     <script type="module" src="src/js/animations.js"></script>
     <script type="module" src="src/js/ai-chat.js"></script>
     
-    <!-- Fallback script for AI initialization -->
+    <!-- Fallback script for AI initialization and mobile navigation -->
     <script>
-        // Ensure AI features work on all platforms
+        // Ensure AI features and mobile navigation work on all platforms
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Setup
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (hamburger && navMenu) {
+                // Hamburger click handler
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+                });
+                
+                // Close menu when clicking nav links
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Smooth scroll to target section
+                        const targetId = link.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        
+                        // Close mobile menu
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
             // Wait for all modules to load
             setTimeout(function() {
                 // Check if AI bubble exists and add click handler if missing

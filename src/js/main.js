@@ -19,18 +19,24 @@ class Portfolio3D {
         this.init();
         this.setupEventListeners();
         this.setupMobileNavigation();
+        this.setupRotatingText();
         this.animate();
     }
 
     init() {
-        this.setupScene();
-        this.setupCamera();
-        this.setupRenderer();
-        this.setupLights();
-        this.createParticleSystem();
-        this.createGeometricShapes();
-        this.setupPostProcessing();
+        // Show content immediately for faster perceived loading
         this.hideLoadingScreen();
+        
+        // Then initialize 3D elements asynchronously
+        requestAnimationFrame(() => {
+            this.setupScene();
+            this.setupCamera();
+            this.setupRenderer();
+            this.setupLights();
+            this.createParticleSystem();
+            this.createGeometricShapes();
+            this.setupPostProcessing();
+        });
     }
 
     setupScene() {
@@ -99,8 +105,8 @@ class Portfolio3D {
     }
     
     createParticleSystem() {
-        // Reduce particle count on mobile devices for better performance
-        const particleCount = this.isMobile ? 1500 : 5000;
+        // Heavily optimize particle count for ultra-fast loading
+        const particleCount = this.isMobile ? 400 : 1200;
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
@@ -134,28 +140,26 @@ class Portfolio3D {
         const particleMaterial = new THREE.ShaderMaterial({
             uniforms: {
                 time: { value: 0 },
-                pixelRatio: { value: window.devicePixelRatio }
+                pixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
             },
             vertexShader: `
                 attribute float size;
                 attribute vec3 color;
                 varying vec3 vColor;
-                uniform float time;
                 
                 void main() {
                     vColor = color;
                     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                    gl_PointSize = size * (300.0 / -mvPosition.z);
+                    gl_PointSize = size * (200.0 / -mvPosition.z);
                     gl_Position = projectionMatrix * mvPosition;
                 }
             `,
             fragmentShader: `
                 varying vec3 vColor;
-                uniform float time;
                 
                 void main() {
                     float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
-                    float strength = 0.05 / distanceToCenter - 0.1;
+                    float strength = 0.04 / distanceToCenter - 0.08;
                     gl_FragColor = vec4(vColor, strength);
                 }
             `,
@@ -209,8 +213,8 @@ class Portfolio3D {
             })
         ];
 
-        // Reduce number of shapes on mobile for better performance
-        const shapeCount = this.isMobile ? 6 : 12;
+        // Heavily optimize shape count for ultra-fast loading
+        const shapeCount = this.isMobile ? 2 : 4;
         
         for (let i = 0; i < shapeCount; i++) {
             const geometry = shapes[i % shapes.length];
@@ -287,9 +291,6 @@ class Portfolio3D {
         // Hire me button effects
         this.setupHireMeButton();
     }
-            });
-        }
-    }
 
     onWindowResize() {
         this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -323,6 +324,10 @@ class Portfolio3D {
         this.onClick(event);
     }
 
+    onClick(event) {
+        this.onMouseClick(event);
+    }
+
     onMouseClick(event) {
         this.raycaster.setFromCamera(this.mouse, this.camera);
         const intersects = this.raycaster.intersectObjects(this.geometricShapes);
@@ -339,17 +344,57 @@ class Portfolio3D {
     }
 
     hideLoadingScreen() {
+        // Much faster loading - show content as soon as possible
         setTimeout(() => {
             const loadingScreen = document.getElementById('loading-screen');
-            gsap.to(loadingScreen, {
-                duration: 1,
+            if (loadingScreen) {
+                gsap.to(loadingScreen, {
+                    duration: 0.5,
+                    opacity: 0,
+                    scale: 0.8,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        loadingScreen.style.display = 'none';
+                        this.isLoading = false;
+                        // Trigger hero animations
+                        this.triggerHeroAnimations();
+                    }
+                });
+            } else {
+                this.isLoading = false;
+            }
+        }, 300); // Reduced from 800ms to 300ms for much faster loading
+    }
+    
+    triggerHeroAnimations() {
+        // Animate hero elements after loading
+        const heroContent = document.querySelector('.hero-content');
+        const heroImage = document.querySelector('.hero-image');
+        
+        if (heroContent) {
+            gsap.fromTo(heroContent.children, {
                 opacity: 0,
-                onComplete: () => {
-                    loadingScreen.style.display = 'none';
-                    this.isLoading = false;
-                }
+                y: 30
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out"
             });
-        }, 2000);
+        }
+        
+        if (heroImage) {
+            gsap.fromTo(heroImage, {
+                opacity: 0,
+                scale: 0.8
+            }, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            });
+        }
     }
 
     animate() {
@@ -383,21 +428,156 @@ class Portfolio3D {
     setupMobileNavigation() {
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.nav-link');
         
+        // Enhanced hamburger functionality
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
             });
             
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
+                    this.closeNavMenu(hamburger, navMenu);
+                }
+            });
+            
+            // Close menu when clicking on nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    this.closeNavMenu(hamburger, navMenu);
+                });
+            });
+        }
+        
+        // Navbar scroll effects
+        this.setupNavbarScrollEffects(navbar);
+        
+        // Active link highlighting
+        this.setupActiveLinks(navLinks);
+        
+        // Logo click functionality
+        this.setupLogoClick();
+    }
+    
+    closeNavMenu(hamburger, navMenu) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    setupNavbarScrollEffects(navbar) {
+        if (!navbar) return;
+        
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        const updateNavbar = () => {
+            const scrollY = window.scrollY;
+            
+            // Add scrolled class for style changes
+            if (scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Hide/show navbar on scroll
+            if (scrollY > lastScrollY && scrollY > 200) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        };
+        
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        };
+        
+        window.addEventListener('scroll', onScroll);
+    }
+    
+    setupActiveLinks(navLinks) {
+        if (!navLinks.length) return;
+        
+        const sections = document.querySelectorAll('section[id]');
+        
+        const highlightActiveLink = () => {
+            const scrollY = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', highlightActiveLink);
+        highlightActiveLink(); // Initial call
+    }
+    
+    setupLogoClick() {
+        const logoContainer = document.querySelector('.logo-container');
+        
+        if (logoContainer) {
+            logoContainer.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Add click animation
+                const logoCircle = logoContainer.querySelector('.logo-circle');
+                if (logoCircle) {
+                    logoCircle.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        logoCircle.style.transform = '';
+                    }, 150);
                 }
             });
         }
+    }
+    
+    setupRotatingText() {
+        const roles = document.querySelectorAll('.role');
+        let currentRoleIndex = 0;
+        
+        if (roles.length === 0) return;
+        
+        const rotateRoles = () => {
+            // Remove active class from current role
+            roles[currentRoleIndex].classList.remove('active');
+            
+            // Move to next role
+            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+            
+            // Add active class to new role
+            roles[currentRoleIndex].classList.add('active');
+        };
+        
+        // Start the rotation after initial load
+        setTimeout(() => {
+            setInterval(rotateRoles, 3000); // Change role every 3 seconds
+        }, 3000); // Wait 3 seconds before starting rotation
     }
 }
 
